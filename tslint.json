@@ -1,0 +1,22 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint-eslint-rules", "tslint-config-airbnb", "tslint-config-prettier"],
+  "jsRules": {
+    "no-unused-expression": true
+  },
+  "rules": {
+    "max-line-length": [true, 150],
+    "newline-before-return": true,
+    "interface-name": false,
+    "arrow-parens": false,
+    "no-return-await": true,
+    "variable-name": {
+      "options": ["allow-pascal-case", "allow-snake-case"]
+    },
+    "ter-arrow-parens": [true, "as-needed"],
+    "import-name": [true, {
+      "stripe": "Stripe"
+    }]
+  },
+  "rulesDirectory": ["node_modules/tslint-eslint-rules/dist/rules"]
+}

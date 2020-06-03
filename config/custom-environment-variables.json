@@ -1,0 +1,15 @@
+{
+  "knex": {
+    "client": "DB_CLIENT",
+    "connection": {
+      "host": "DB_HOST",
+      "database": "DB_DATABASE",
+      "user": "DB_USER",
+      "password": "DB_PASSWORD"
+    },
+    "pool": {
+      "min": "DB_POOL_MIN",
+      "max": "DB_POOL_MAX"
+    }
+  }
+}

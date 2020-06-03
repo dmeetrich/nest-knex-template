@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  postgres:
+    image: postgres:11
+    container_name: template-postgres-db
+    volumes:
+      - ./database/postgres_dev:/data/postgres_dev
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwerty123
+      - POSTGRES_DB=template_dev
+      - PGDATA=/data/postgres_dev
+    ports:
+      - 5432:5432
+    networks:
+      - db-manager
+
+  db-manager:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - .:/app/
+    depends_on:
+      - postgres
+    command: "sh -c 'npm install && wait-for postgres:5432 && npm run knex migrate:latest'"
+    environment:
+      - NODE_ENV=development
+      - DB_CLIENT=pg
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=qwerty123
+      - DB_DATABASE=template_dev
+      - ALLOW_CONFIG_MUTATIONS=Y
+    networks:
+      - db-manager
+
+networks:
+  db-manager:
